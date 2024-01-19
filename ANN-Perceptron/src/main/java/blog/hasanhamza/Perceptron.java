@@ -32,6 +32,8 @@ public class Perceptron {
                         " - Inputs X2: " + learningSetInputs[i][1]  +
                         " - Expected OutPut: " + learningSetOutputs[i] +
                         " - Neuron Output: " + result);
+
+                // learning rules
                 if (result != learningSetOutputs[i]) {
                     isWeightChanged = true;
                     int weightDirection = 1;
@@ -47,6 +49,10 @@ public class Perceptron {
             learningCounter++;
         }
 
+    }
+
+    public int Predict(double[] testInput){
+        return neuron.getOutput(testInput);
     }
 
 }

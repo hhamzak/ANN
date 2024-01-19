@@ -30,7 +30,8 @@ public class Neuron {
     }
 
     public void updateWeights(int direction, double[] inputs){
-        // up or down
+        // direction variable determines whether learning will occur by increasing or decreasing the weights
+
         if (weights.length != inputs.length){
             System.err.println("Weights and inputs length are different!");
             return;
