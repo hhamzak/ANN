@@ -1,10 +1,11 @@
 package blog.hasanhamza;
 
-public class Perceptron {
+public class Adaline {
     private Neuron neuron;
     private double[][] learningSetInputs;
     private int[] learningSetOutputs;
-    public Perceptron(double[][] learningSetInput, int[] learningSetOutput, double[] weights, double threshold, double learningRate) {
+
+    public Adaline(double[][] learningSetInput, int[] learningSetOutput, double[] weights, double threshold, double learningRate) {
         neuron = new Neuron(
                 weights,
                 threshold,
@@ -25,22 +26,19 @@ public class Perceptron {
         {
             isWeightChanged = false;
             for (int i = 0; i < learningSetOutputs.length; i++) {
+                System.out.println("Iteration: " + learningCounter + ", Sample: " + i +
+                        " Inputs X1: " + learningSetInputs[i][0] +
+                        " - Inputs X2: " + learningSetInputs[i][1]);
                 int result = neuron.getOutput(learningSetInputs[i]);
 
-                System.out.println("Iteration: " + learningCounter + " - Sample: " + i +
-                        " - Inputs X1: " + learningSetInputs[i][0] +
-                        " - Inputs X2: " + learningSetInputs[i][1]  +
-                        " - Expected OutPut: " + learningSetOutputs[i] +
+                System.out.println("    Expected OutPut: " + learningSetOutputs[i] +
                         " - Neuron Output: " + result);
 
+                int E = learningSetOutputs[i] - result;
                 // learning rules
-                if (result != learningSetOutputs[i]) {
+                if (E != 0) {
                     isWeightChanged = true;
-                    int weightDirection = 1;
-                    if (result > learningSetOutputs[i]){
-                        weightDirection = -1;
-                    }
-                    neuron.updateWeights(weightDirection,learningSetInputs[i]);
+                    neuron.updateWeights(E,learningSetInputs[i]);
                 }
             }
             if (!isWeightChanged){
@@ -50,8 +48,7 @@ public class Perceptron {
         }
     }
 
-    public int Predict(double[] testInput){
+    public int Predict(double[] testInput) {
         return neuron.getOutput(testInput);
     }
-
 }
