@@ -19,6 +19,7 @@ public class Neuron {
             sum += inputs[i]*weights[i];
         }
 
+        // activation function
         if (sum >= threshold) {
             return 1;
         }
@@ -37,9 +38,9 @@ public class Neuron {
             return;
         }
         for (int i = 0; i < weights.length; i++) {
-            System.out.println("Weight " + i + ":               " + weights[i]);
+            System.out.print("    Weight " + i + " was: " + weights[i]);
             weights[i] = weights[i] + direction*learningRate*inputs[i];
-            System.out.println("Weight " + i + " changed as:    " + weights[i]);
+            System.out.println(" - new value is: " + weights[i]);
         }
     }
 }

@@ -35,6 +35,5 @@ public class App
             System.out.println("Test input - X1: " + test[0] + " - X2: " + test[1]);
             System.out.println("Test output: " + p.Predict(test));
         }
-
     }
 }
